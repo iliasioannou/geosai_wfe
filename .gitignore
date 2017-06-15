@@ -3,3 +3,5 @@ target
 *.log
 water_quality/.settings
 water_quality/.classpath
+*.idea
+*.iml
