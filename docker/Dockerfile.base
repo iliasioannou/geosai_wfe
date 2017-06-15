@@ -1,0 +1,5 @@
+FROM eternnoir/activiti
+MAINTAINER Francesco Bruni <bruni@planetek.it>
+
+RUN apt-get update && apt-get install maven
+

@@ -1,4 +1,4 @@
-FROM eternnoir/activiti
+FROM planetek/cmems_activiti:base
 MAINTAINER Francesco Bruni <bruni@planetek.it>
 
 ARG branch
