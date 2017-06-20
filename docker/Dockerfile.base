@@ -2,4 +2,9 @@ FROM eternnoir/activiti
 MAINTAINER Francesco Bruni <bruni@planetek.it>
 
 RUN apt-get update -y && apt-get install -y maven
-
+RUN mkdir /fatty_deps
+ADD fatty_deps_pom.xml /fatty_deps/pom.xml
+WORKDIR /fatty_deps
+RUN mvn clean package
+RUN cp target/cmems_acitiviti_common_libraries.jar /opt/tomcat/lib
+WORKDIR /
