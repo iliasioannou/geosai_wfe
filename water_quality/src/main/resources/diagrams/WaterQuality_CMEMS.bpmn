@@ -17,8 +17,8 @@ import com.sun.jersey.api.client.WebResource;
 
 def executionID = execution.id;
 
-def sd = "${WQM_startDate}" ;
-def ed = "${WQM_endDate}";
+def sd = "${WQC_startDate}" ;
+def ed = "${WQC_endDate}";
 
 def jsonBuilder = new groovy.json.JsonBuilder();
 
