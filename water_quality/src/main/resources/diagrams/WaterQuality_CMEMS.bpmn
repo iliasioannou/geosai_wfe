@@ -3,11 +3,11 @@
   <signal id="test_signal_cmems" name="test_signal_cmems"></signal>
   <signal id="test_signal_twq" name="test_signal_twq"></signal>
   <message id="cmems_new" name="cmems_new"></message>
-  <process id="WQM-Saimon" name="Water Quality (cmems) for Saimon" isExecutable="true">
+  <process id="WQC-Saimon" name="Water Quality (cmems) for Saimon" isExecutable="true">
     <startEvent id="startevent1" name="Start" activiti:initiator="initiator">
       <extensionElements>
-        <activiti:formProperty id="start_date_cmems" name="start_date_cmems" type="date" variable="WQM_startDate" required="true"></activiti:formProperty>
-        <activiti:formProperty id="end_date_cmems" name="end_date_cmems" type="date" variable="WQM_endDate" required="true"></activiti:formProperty>
+        <activiti:formProperty id="start_date_cmems" name="start_date_cmems" type="date" variable="WQC_startDate" required="true"></activiti:formProperty>
+        <activiti:formProperty id="end_date_cmems" name="end_date_cmems" type="date" variable="WQC_endDate" required="true"></activiti:formProperty>
       </extensionElements>
     </startEvent>
     <sequenceFlow id="flow3" sourceRef="startevent1" targetRef="scripttask1"></sequenceFlow>
