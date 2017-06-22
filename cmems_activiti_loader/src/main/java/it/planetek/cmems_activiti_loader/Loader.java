@@ -37,7 +37,7 @@ public class Loader {
         restTemplate.getInterceptors().add(new BasicAuthorizationInterceptor("kermit", "kermit"));
 
         String allFlows = restTemplate.getForObject(BASEURL, String.class);
-        for (String flow: Arrays.asList("WaterQuality_CMEMS.bpmn")) {
+        for (String flow: Arrays.asList("WaterQuality_CMEMS.bpmn", "WaterQuality_CMEMS10.bpmn")) {
             if (!checkForExistingFlow(allFlows, flow)){
                 MultiValueMap<String, Object> form
                         = new LinkedMultiValueMap<String, Object>();

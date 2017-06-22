@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
-  <signal id="wqm10signal" name="wqm10signal"></signal>
-  <process id="WQM10-Saimon" name="Water Quality Modis 10 days for Saimon" isExecutable="true">
+  <signal id="wqc10signal" name="wqc10signal"></signal>
+  <process id="WQC10-CMEMS" name="Water Quality Modis 10 days for cmems" isExecutable="true">
     <startEvent id="startevent1" name="Start" activiti:initiator="initiator">
       <extensionElements>
-        <activiti:formProperty id="wqm10_date" type="date" required="true"></activiti:formProperty>
+        <activiti:formProperty id="wqc10_date" type="date" required="true"></activiti:formProperty>
       </extensionElements>
     </startEvent>
     <scriptTask id="scripttask1" name="Call Modis10 Flow" scriptFormat="groovy" activiti:autoStoreVariables="false">
@@ -13,13 +13,13 @@ import com.sun.jersey.api.client.WebResource;
 
 def executionID = execution.id;
 
-def d = "${wqm10_date}" ;
+def d = "${wqc10_date}" ;
 
 def jsonBuilder = new groovy.json.JsonBuilder();
 
 jsonBuilder(
     executionId: executionID,
-    signalName: signalWQM10,
+    signalName: signalWQC10,
     args: {
     date d
   }
@@ -27,7 +27,7 @@ jsonBuilder(
 println(jsonBuilder.toPrettyString());
 
 Client c = Client.create();
-WebResource r = c.resource(endpointWQM10);
+WebResource r = c.resource(endpointWQC10);
 def resp = r.post(String.class, jsonBuilder.toPrettyString());
 
 execution.setVariable("resp",resp);
@@ -36,7 +36,7 @@ execution.setVariable("last_update",last_update);</script>
     </scriptTask>
     <sequenceFlow id="flow1" sourceRef="startevent1" targetRef="scripttask1"></sequenceFlow>
     <intermediateCatchEvent id="signalintermediatecatchevent1" name="SignalCatchEvent">
-      <signalEventDefinition signalRef="wqm10signal"></signalEventDefinition>
+      <signalEventDefinition signalRef="wqc10signal"></signalEventDefinition>
     </intermediateCatchEvent>
     <sequenceFlow id="flow2" sourceRef="scripttask1" targetRef="signalintermediatecatchevent1"></sequenceFlow>
     <exclusiveGateway id="exclusivegateway1" name="Exclusive Gateway"></exclusiveGateway>
@@ -54,19 +54,19 @@ ${error}</documentation>
       <conditionExpression xsi:type="tFormalExpression"><![CDATA[${result == '-1'}]]></conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="flow6" sourceRef="usertask1" targetRef="endevent1"></sequenceFlow>
-    <dataObject id="endpointWQM10" name="endpointWQM10" itemSubjectRef="xsd:string">
+    <dataObject id="endpointWQC10" name="endpointWQC10" itemSubjectRef="xsd:string">
       <extensionElements>
-        <activiti:value>http://tebe.planetek.it:9190/wqm10</activiti:value>
+        <activiti:value>http://esb:9190/wqm10</activiti:value>
       </extensionElements>
     </dataObject>
-    <dataObject id="signalWQM10" name="signalWQM10" itemSubjectRef="xsd:string">
+    <dataObject id="signalWQC10" name="signalWQC10" itemSubjectRef="xsd:string">
       <extensionElements>
-        <activiti:value>wqm10signal</activiti:value>
+        <activiti:value>wqc10signal</activiti:value>
       </extensionElements>
     </dataObject>
   </process>
-  <bpmndi:BPMNDiagram id="BPMNDiagram_WQM10-Saimon">
-    <bpmndi:BPMNPlane bpmnElement="WQM10-Saimon" id="BPMNPlane_WQM10-Saimon">
+  <bpmndi:BPMNDiagram id="BPMNDiagram_WQC10-CMEMS">
+    <bpmndi:BPMNPlane bpmnElement="WQC10-Saimon" id="BPMNPlane_WQC10-Saimon">
       <bpmndi:BPMNShape bpmnElement="startevent1" id="BPMNShape_startevent1">
         <omgdc:Bounds height="35.0" width="35.0" x="120.0" y="230.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
