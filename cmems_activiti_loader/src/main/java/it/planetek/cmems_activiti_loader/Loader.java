@@ -10,7 +10,9 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.*;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.TimeZone;
 
 
 /**
@@ -38,14 +40,20 @@ public class Loader {
 
         String allFlows = restTemplate.getForObject(BASEURL, String.class);
         for (String flow: Arrays.asList("WaterQuality_CMEMS.bpmn", "WaterQuality_CMEMS10.bpmn")) {
-            if (!checkForExistingFlow(allFlows, flow)){
+            //if (!checkForExistingFlow(allFlows, flow)){
                 MultiValueMap<String, Object> form
                         = new LinkedMultiValueMap<String, Object>();
 
                 form.add("deployment", new FileSystemResource(BASEPATH + flow));
                 restTemplate.postForLocation(BASEURL, form, String.class);
-            }
+            //}
         }
     }
+
+
+
+
+
+
 }
 
