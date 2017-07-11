@@ -40,13 +40,13 @@ public class Loader {
 
         String allFlows = restTemplate.getForObject(BASEURL, String.class);
         for (String flow: Arrays.asList("WaterQuality_CMEMS.bpmn", "WaterQuality_CMEMS10.bpmn", "WaterQuality_CMEMS30.bpmn")) {
-            //if (!checkForExistingFlow(allFlows, flow)){
+            if (!checkForExistingFlow(allFlows, flow)){
                 MultiValueMap<String, Object> form
                         = new LinkedMultiValueMap<String, Object>();
 
                 form.add("deployment", new FileSystemResource(BASEPATH + flow));
                 restTemplate.postForLocation(BASEURL, form, String.class);
-            //}
+            }
         }
     }
 
