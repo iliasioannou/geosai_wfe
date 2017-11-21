@@ -6,5 +6,5 @@ RUN mkdir /fatty_deps
 ADD fatty_deps_pom.xml /fatty_deps/pom.xml
 WORKDIR /fatty_deps
 RUN mvn clean package
-RUN cp target/cmems_acitiviti_common_libraries.jar /opt/tomcat/lib
+RUN cp target/eosai_activiti_common_libraries.jar /opt/tomcat/lib
 WORKDIR /
