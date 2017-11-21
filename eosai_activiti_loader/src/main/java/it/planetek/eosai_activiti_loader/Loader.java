@@ -1,4 +1,4 @@
-package it.planetek.cmems_activiti_loader;
+package it.planetek.eosai_activiti_loader;
 
 import org.springframework.core.io.FileSystemResource;
 
