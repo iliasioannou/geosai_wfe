@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>it.planetek</groupId>
-    <artifactId>cmems_activiti_common_libraries</artifactId>
+    <artifactId>eosai_activiti_common_libraries</artifactId>
     <version>1.0</version>
     <packaging>jar</packaging>
     <dependencies>
@@ -28,7 +28,7 @@
                             <goal>shade</goal>
                         </goals>
                         <configuration>
-                            <finalName>cmems_acitiviti_common_libraries</finalName>
+                            <finalName>eosai_activiti_common_libraries</finalName>
                         </configuration>
                     </execution>
                 </executions>
