@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
   <signal id="wqc10signal" name="wqc10signal"></signal>
-  <process id="WQC10-CMEMS" name="Water Quality CMEMS 10 days" isExecutable="true">
+  <process id="WQC10-EOSAI" name="Water Quality EOSAI 10 days" isExecutable="true">
     <startEvent id="startevent1" name="Start" activiti:initiator="initiator">
       <extensionElements>
         <activiti:formProperty id="wqc10_date" type="date" required="true"></activiti:formProperty>
@@ -56,7 +56,7 @@ ${error}</documentation>
     <sequenceFlow id="flow6" sourceRef="usertask1" targetRef="endevent1"></sequenceFlow>
     <dataObject id="endpointWQC10" name="endpointWQC10" itemSubjectRef="xsd:string">
       <extensionElements>
-        <activiti:value>http://esb:9190/wqcmems10</activiti:value>
+        <activiti:value>http://esb:9190/wqeosai10</activiti:value>
       </extensionElements>
     </dataObject>
     <dataObject id="signalWQC10" name="signalWQC10" itemSubjectRef="xsd:string">
@@ -65,7 +65,7 @@ ${error}</documentation>
       </extensionElements>
     </dataObject>
   </process>
-  <bpmndi:BPMNDiagram id="BPMNDiagram_WQC10-CMEMS">
+  <bpmndi:BPMNDiagram id="BPMNDiagram_WQC10-EOSAI">
     <bpmndi:BPMNPlane bpmnElement="WQC10-Saimon" id="BPMNPlane_WQC10-Saimon">
       <bpmndi:BPMNShape bpmnElement="startevent1" id="BPMNShape_startevent1">
         <omgdc:Bounds height="35.0" width="35.0" x="120.0" y="230.0"></omgdc:Bounds>
