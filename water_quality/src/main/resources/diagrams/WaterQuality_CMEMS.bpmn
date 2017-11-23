@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
-  <signal id="test_signal_cmems" name="test_signal_cmems"></signal>
+  <signal id="test_signal_eosai" name="test_signal_eosai"></signal>
   <signal id="test_signal_twq" name="test_signal_twq"></signal>
-  <message id="cmems_new" name="cmems_new"></message>
-  <process id="WQC-CMEMS" name="Water Quality (cmems) for Saimon" isExecutable="true">
+  <message id="eosai_new" name="eosai_new"></message>
+  <process id="WQC-EOSAI" name="Water Quality (eosai) for Saimon" isExecutable="true">
     <startEvent id="startevent1" name="Start" activiti:initiator="initiator">
       <extensionElements>
-        <activiti:formProperty id="start_date_cmems" name="start_date_cmems" type="date" variable="WQC_startDate" required="true"></activiti:formProperty>
-        <activiti:formProperty id="end_date_cmems" name="end_date_cmems" type="date" variable="WQC_endDate" required="true"></activiti:formProperty>
+        <activiti:formProperty id="start_date_eosai" name="start_date_eosai" type="date" variable="WQC_startDate" required="true"></activiti:formProperty>
+        <activiti:formProperty id="end_date_eosai" name="end_date_eosai" type="date" variable="WQC_endDate" required="true"></activiti:formProperty>
       </extensionElements>
     </startEvent>
     <sequenceFlow id="flow3" sourceRef="startevent1" targetRef="scripttask1"></sequenceFlow>
-    <scriptTask id="scripttask1" name="Fetch Input cmems Metadata and Call cmems Processor" scriptFormat="groovy" activiti:autoStoreVariables="false">
+    <scriptTask id="scripttask1" name="Fetch Input eosai Metadata and Call eosai Processor" scriptFormat="groovy" activiti:autoStoreVariables="false">
       <script>import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.WebResource;
 
@@ -41,14 +41,14 @@ def last_update = new Date()
 execution.setVariable("last_update",last_update);</script>
     </scriptTask>
     <intermediateCatchEvent id="signalintermediatecatchevent1" name="SignalCatchEvent">
-      <signalEventDefinition signalRef="test_signal_cmems"></signalEventDefinition>
+      <signalEventDefinition signalRef="test_signal_eosai"></signalEventDefinition>
     </intermediateCatchEvent>
     <sequenceFlow id="flow4" sourceRef="scripttask1" targetRef="signalintermediatecatchevent1"></sequenceFlow>
     <endEvent id="endevent2" name="End"></endEvent>
     <exclusiveGateway id="exclusivegateway3" name="Exclusive Gateway"></exclusiveGateway>
     <sequenceFlow id="flow15" sourceRef="signalintermediatecatchevent1" targetRef="exclusivegateway3"></sequenceFlow>
-    <userTask id="usertask4" name="cmems Processor Error" activiti:assignee="${initiator}">
-      <documentation>An error occurred while sending your request to the cmems Water Quality processor.
+    <userTask id="usertask4" name="eosai Processor Error" activiti:assignee="${initiator}">
+      <documentation>An error occurred while sending your request to the eosai Water Quality processor.
 The error is reported below:
 ${error}</documentation>
     </userTask>
@@ -61,16 +61,16 @@ ${error}</documentation>
     </sequenceFlow>
     <dataObject id="endpointWQM" name="endpointWQM" itemSubjectRef="xsd:string">
       <extensionElements>
-        <activiti:value>http://cmems_esb:9190/wqcmems</activiti:value>
+        <activiti:value>http://eosai_esb:9190/wqeosai</activiti:value>
       </extensionElements>
     </dataObject>
     <dataObject id="signalWQM" name="signalWQM" itemSubjectRef="xsd:string">
       <extensionElements>
-        <activiti:value>test_signal_cmems</activiti:value>
+        <activiti:value>test_signal_eosai</activiti:value>
       </extensionElements>
     </dataObject>
     <textAnnotation id="textannotation1">
-      <text>The process starts (without human trigger) when new cmems acquisitions are detected (typically on a daily basis)</text>
+      <text>The process starts (without human trigger) when new eosai acquisitions are detected (typically on a daily basis)</text>
     </textAnnotation>
   </process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_WQM-Saimon">
