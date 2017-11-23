@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
   <signal id="wqc30signal" name="wqc30signal"></signal>
-  <process id="WQC30-CMEMS" name="Water Quality CMEMS 30 days" isExecutable="true">
+  <process id="WQC30-EOSAI" name="Water Quality EOSAI 30 days" isExecutable="true">
     <startEvent id="startevent1" name="Start" activiti:initiator="initiator">
       <extensionElements>
         <activiti:formProperty id="wqc30_date" type="date" required="true"></activiti:formProperty>
       </extensionElements>
     </startEvent>
-    <scriptTask id="scripttask1" name="Call CMEMS30 Flow" scriptFormat="groovy" activiti:autoStoreVariables="false">
+    <scriptTask id="scripttask1" name="Call EOSAI30 Flow" scriptFormat="groovy" activiti:autoStoreVariables="false">
       <script>import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.WebResource;
 
@@ -39,7 +39,7 @@ execution.setVariable("last_update",last_update);</script>
       <signalEventDefinition signalRef="wqc30signal"></signalEventDefinition>
     </intermediateCatchEvent>
     <sequenceFlow id="flow2" sourceRef="scripttask1" targetRef="signalintermediatecatchevent1"></sequenceFlow>
-    <userTask id="usertask1" name="CMEMS30 Processor Error" activiti:assignee="${initiator}">
+    <userTask id="usertask1" name="EOSAI30 Processor Error" activiti:assignee="${initiator}">
       <documentation>An error occurred while sending your request to the Modis Water Quality processor.
 The error is reported below:
 ${error}</documentation>
@@ -48,7 +48,7 @@ ${error}</documentation>
     <sequenceFlow id="flow4" sourceRef="usertask1" targetRef="endevent1"></sequenceFlow>
     <dataObject id="endpointWQC30" name="endpointWQC30" itemSubjectRef="xsd:string">
       <extensionElements>
-        <activiti:value>http://esb:9190/wqcmems30</activiti:value>
+        <activiti:value>http://esb:9190/wqeosai30</activiti:value>
       </extensionElements>
     </dataObject>
     <dataObject id="signalWQC30" name="signalWQC30" itemSubjectRef="xsd:string">
