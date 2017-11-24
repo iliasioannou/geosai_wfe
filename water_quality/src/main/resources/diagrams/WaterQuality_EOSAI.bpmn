@@ -3,7 +3,7 @@
   <signal id="test_signal_eosai" name="test_signal_eosai"></signal>
   <signal id="test_signal_twq" name="test_signal_twq"></signal>
   <message id="eosai_new" name="eosai_new"></message>
-  <process id="WQC-EOSAI" name="Water Quality (eosai) for Saimon" isExecutable="true">
+  <process id="WQC-EOSAI" name="Water Quality (eosai) for EOSAI" isExecutable="true">
     <startEvent id="startevent1" name="Start" activiti:initiator="initiator">
       <extensionElements>
         <activiti:formProperty id="start_date_eosai" name="start_date_eosai" type="date" variable="WQC_startDate" required="true"></activiti:formProperty>
